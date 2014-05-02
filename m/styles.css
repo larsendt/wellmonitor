@@ -1,0 +1,56 @@
+body {
+    font-family: sans-serif;
+    margin: 0px;
+}
+
+.wrapper {
+    margin: auto;
+    margin-top: 10px;
+    width: 350px;
+    background-color: #fff;
+    padding: 50px;
+}
+
+.wellitem {
+    padding: 5px;
+}
+
+.well-name {
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 4px;
+}
+
+a:visited {
+    color: #0000ff;
+}
+
+.well-ok {
+    float: right;
+    background-color: #00ff00;
+    border-radius: 3px;
+    border: thin solid #333;
+    padding: 4px;
+    text-align: center;
+    width: 200px;
+}
+
+.well-bad {
+    float: right;
+    background-color: #ff0000;
+    border-radius: 3px;
+    border: thin solid #333;
+    padding: 4px;
+    text-align: center;
+    width: 200px;
+}
+
+.timestamp {
+    padding: 3px;
+    text-align: center;
+    background-color: #ccc;
+    border: thin solid #999;
+    border-radius: 3px;
+    margin-top: 25px;
+}

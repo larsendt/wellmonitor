@@ -1,24 +1,22 @@
-$def with (wells, tstring)
+$def with (welldata, name)
 <html>
     <head>
-        <title>Wells</title>
+        <title>$name History</title>
         <link rel="stylesheet" href="/m/styles.css">
     </head>
     <body>
-        <div class="wrapper">
-            <h1>Well Status</h1>
-            $for (name, url, status) in wells:
+        <div class="wrapper" style="width: 550px;">
+            <h1>$name History</h1>
+            <p><a href="/">Main</a></p>
+            $for (status, tstring) in welldata:
                 <div class="wellitem">
-                    <div class="well-name"><a href="/$url">$name</a></div>
+                    <div class="well-name">$tstring</div>
                     $if status == 1:
                         <div class="well-ok">OK</div>
                     $else:
                         <div class="well-bad">BAD</div>
                     <div style="clear: both;"></div>
                 </div>
-            <div class="timestamp">
-                $tstring
-            </div>
         </div>
     </body>
 </html>

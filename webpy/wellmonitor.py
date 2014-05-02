@@ -7,6 +7,7 @@ import sqlite3
 
 urls = (
         "/", "index",
+        "/(.+)/?", "well",
 )
 
 web.config.debug = True
@@ -54,10 +55,44 @@ def get_latest():
 class index:
     def GET(self):
         render = web.template.render("templates")
-        latest = get_latest()
-        return render.index(latest)
+        north, west, front, furnace, store, t = get_latest()
+        t = arrow.get(t)
+        tstring = t.humanize() + " (" + t.format("YYYY/MM/DD HH:mm:ss") + ")"
+        wells = [("North", "north", north),
+                 ("West", "west", west),
+                 ("Front", "front", front),
+                 ("Furnace Room", "furnace", furnace),
+                 ("Store Room", "store", store)]
+        return render.index(wells, tstring)
 
+class well:
+    def GET(self, wellname):
+        if wellname == "north":
+            name = "North"
+            idx = 0
+        elif wellname == "west":
+            name = "West"
+            idx = 1
+        elif wellname == "front":
+            name = "Front"
+            idx = 2
+        elif wellname == "furnace":
+            name = "Furnace Room"
+            idx = 3
+        elif wellname == "store":
+            name = "Store Room"
+            idx = 4
+        else:
+            raise web.notfound()
 
+        def fmt(t):
+            t = arrow.get(t)
+            return t.humanize() + " (" + t.format("YYYY/MM/DD HH:mm:ss") + ")"
+
+        data = get_readings()
+        welldata = map(lambda row: (row[idx], fmt(row[-1])), data)
+        render = web.template.render("templates")
+        return render.well(welldata, name)
 
 
 
