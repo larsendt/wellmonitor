@@ -94,6 +94,20 @@ class well:
         render = web.template.render("templates")
         return render.well(welldata, name)
 
+    def POST(self):
+        data = web.input()
+        items = (data.get("north"), data.get("west"), data.get("front"),
+                 data.get("furnace"), data.get("store"))
+
+        def try_int(s):
+            try:
+                s = int(s)
+            except:
+                s = None
+            return s
+
+        intitems = map(try_int, items)
+        add_reading(*intitems)
 
 
 if __name__ == "__main__":
