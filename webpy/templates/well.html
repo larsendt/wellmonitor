@@ -13,8 +13,10 @@ $def with (welldata, name)
                     <div class="well-name">$tstring</div>
                     $if status == 1:
                         <div class="well-ok">OK</div>
-                    $else:
+                    $elif status == 0:
                         <div class="well-bad">BAD</div>
+                    $else:
+                        <div class="well-off">Disabled</div>
                     <div style="clear: both;"></div>
                 </div>
         </div>
