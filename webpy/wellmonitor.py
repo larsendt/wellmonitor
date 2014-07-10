@@ -61,7 +61,7 @@ class index:
     def GET(self):
         render = web.template.render("templates")
         north, west, front, furnace, store, t = get_latest()
-        t = arrow.get(t)
+        t = arrow.get(t).to("US/Mountain")
         tstring = t.humanize() + " (" + t.format("YYYY/MM/DD HH:mm:ss") + ")"
         wells = [("North", "north", north),
                  ("West", "west", west),
