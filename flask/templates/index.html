@@ -1,4 +1,3 @@
-$def with (wells, tstring)
 <html>
     <head>
         <title>Wells</title>
@@ -7,19 +6,21 @@ $def with (wells, tstring)
     <body>
         <div class="wrapper">
             <h1>Well Status</h1>
-            $for (name, url, status) in wells:
+            {% for (name, url, status) in wells %}
                 <div class="wellitem">
-                    <div class="well-name"><a href="/$url">$name</a></div>
-                    $if status == 1:
+                    <div class="well-name"><a href="/{{url}}">{{name}}</a></div>
+                    {% if status == 1 %}
                         <div class="well-ok">OK</div>
-                    $elif status == 0:
+                    {% elif status == 0 %}
                         <div class="well-bad">BAD</div>
-                    $else:
+                    {% else %}
                         <div class="well-off">Disabled</div>
+                    {% endif %}
                     <div style="clear: both;"></div>
                 </div>
+            {% endfor %}
             <div class="timestamp">
-                $tstring
+                {{ tstring }}
             </div>
         </div>
     </body>

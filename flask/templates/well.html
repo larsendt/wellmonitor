@@ -1,24 +1,25 @@
-$def with (welldata, name)
 <html>
     <head>
-        <title>$name History</title>
+        <title>{{name}} History</title>
         <link rel="stylesheet" href="/m/styles.css">
     </head>
     <body>
         <div class="wrapper" style="width: 550px;">
-            <h1>$name History</h1>
+            <h1>{{name}} History</h1>
             <p><a href="/">Main</a></p>
-            $for (status, tstring) in welldata:
+            {% for (status, tstring) in welldata %}
                 <div class="wellitem">
-                    <div class="well-name">$tstring</div>
-                    $if status == 1:
+                    <div class="well-name">{{tstring}}</div>
+                    {% if status == 1 %}
                         <div class="well-ok">OK</div>
-                    $elif status == 0:
+                    {% elif status == 0 %}
                         <div class="well-bad">BAD</div>
-                    $else:
+                    {% else %}
                         <div class="well-off">Disabled</div>
+                    {% endif %}
                     <div style="clear: both;"></div>
                 </div>
+            {% endfor %}
         </div>
     </body>
 </html>
